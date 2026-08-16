@@ -17,11 +17,11 @@
             }
             if (quantity <= 0)
             {
-                throw new ArgumentOutOfRangeException("Quantity must be greater than zero", nameof(quantity));
+                throw new ArgumentOutOfRangeException(nameof(quantity),"Quantity must be greater than zero");
             }
             if(unitPrice < 0)
             {
-                throw new ArgumentOutOfRangeException("Unit Price cannot be negative", nameof(unitPrice));
+                throw new ArgumentOutOfRangeException(nameof(unitPrice),"Unit Price cannot be negative");
             }
             Description = description;
             Quantity = quantity;
