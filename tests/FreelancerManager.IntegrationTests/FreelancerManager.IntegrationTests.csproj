@@ -22,8 +22,4 @@
     <ProjectReference Include="..\..\src\FreelancerManager.Api\FreelancerManager.api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Invoices\" />
-  </ItemGroup>
-
 </Project>
