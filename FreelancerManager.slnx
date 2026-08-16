@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FreelancerManager.Api/FreelancerManager.Api.csproj" />
+    <Project Path="src/FreelancerManager.Application/FreelancerManager.Application.csproj" />
+    <Project Path="src/FreelancerManager.Domain/FreelancerManager.Domain.csproj" />
+    <Project Path="src/FreelancerManager.Infrastructure/FreelancerManager.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FreelancerManager.IntegrationTests/FreelancerManager.IntegrationTests.csproj" />
+    <Project Path="tests/FreelancerManager.UnitTests/FreelancerManager.UnitTests.csproj" />
+  </Folder>
+</Solution>
