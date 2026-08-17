@@ -4,7 +4,7 @@
     {
         private readonly List<InvoiceLine> _lines = [];
 
-        public IReadOnlyCollection<InvoiceLine> Lines => _lines;
+        public IReadOnlyCollection<InvoiceLine> Lines => _lines.AsReadOnly();
 
         public decimal Subtotal => _lines.Sum(line => line.Subtotal);
 
