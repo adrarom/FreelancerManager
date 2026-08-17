@@ -7,12 +7,12 @@ namespace FreelancerManager.UnitTests.Domain.Invoices
     {
 
         private static Client CreateClient()
-{
-    return new Client(
-        "Acme Ltd",
-        "B12345678",
-        "contact@acme.com");
-}
+        {
+            return new Client(
+                "Acme Ltd",
+                "B12345678",
+                "contact@acme.com");
+        }
         [Fact]
         public void AddLine_WithValidLine_AddsLineToInvoice()
         {
