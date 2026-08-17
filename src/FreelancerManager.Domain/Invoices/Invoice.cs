@@ -11,6 +11,10 @@
         public InvoiceStatus Status { get; private set; } = InvoiceStatus.Draft;
         public void AddLine(InvoiceLine line)
         {
+            if (Status == InvoiceStatus.Issued)
+            {
+                throw new InvalidOperationException("Cannot add lines when Invoice is already issued");
+            }
             if(line is null) throw new ArgumentNullException(nameof(line),"InvoiceLine can't be null");
             _lines.Add(line);
         }

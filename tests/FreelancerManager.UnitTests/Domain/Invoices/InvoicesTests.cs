@@ -95,5 +95,16 @@ namespace FreelancerManager.UnitTests.Domain.Invoices
 
             Assert.Throws<InvalidOperationException>(() => invoice.Issue());
         }
+        [Fact]
+        public void AddLine_WhenInvoiceIsIssued_ThrowsInvalidOperationException()
+        {
+            var invoice = new Invoice();
+            var invoiceLine = new InvoiceLine("Backend development", 10m, 50m);
+
+            invoice.AddLine(invoiceLine);
+            invoice.Issue();
+
+            Assert.Throws<InvalidOperationException>(() => invoice.AddLine(invoiceLine));
+        }
     }
 }
