@@ -76,7 +76,7 @@ namespace FreelancerManager.UnitTests.Application.Invoices.CreateInvoice
         }
 
         [Fact]
-        public void Execute_WithNullLines_ThrowsArgumentException()
+        public void Execute_WithNullLines_ThrowsArgumentNullException()
         {
             var client = CreateClient();
 
