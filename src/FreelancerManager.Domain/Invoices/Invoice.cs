@@ -1,14 +1,24 @@
-﻿namespace FreelancerManager.Domain.Invoices
+﻿using FreelancerManager.Domain.Clients;
+
+namespace FreelancerManager.Domain.Invoices
 {
     public class Invoice
     {
         private readonly List<InvoiceLine> _lines = [];
+
+        public Client Client { get; }
 
         public IReadOnlyCollection<InvoiceLine> Lines => _lines.AsReadOnly();
 
         public decimal Subtotal => _lines.Sum(line => line.Subtotal);
 
         public InvoiceStatus Status { get; private set; } = InvoiceStatus.Draft;
+
+        public Invoice(Client client)
+        {
+            if(client is null) throw new ArgumentNullException(nameof(client));
+            Client = client;
+        }
         public void AddLine(InvoiceLine line)
         {
             if (Status != InvoiceStatus.Draft)
