@@ -51,5 +51,35 @@ namespace FreelancerManager.UnitTests.Domain.Clients
 
             Assert.Null(client.Email);
         }
+
+        [Fact]
+        public void Constructor_WithNullName_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                new Client(null!, "B12345678", null));
+        }
+
+        [Fact]
+        public void Constructor_WithWhitespaceName_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                new Client("   ", "B12345678", null));
+        }
+
+
+        [Fact]
+        public void Constructor_WithNullTaxId_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                new Client("Acme Ltd", "", null));
+        }
+
+        [Fact]
+        public void Constructor_WithWhitespaceTaxId_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                new Client("Acme Ltd", "", null));
+        }
+
     }
 }

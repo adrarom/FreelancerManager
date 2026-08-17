@@ -22,10 +22,10 @@
                     nameof(taxId));
             }
 
-            if (email is not null && email.Length > 0 && string.IsNullOrWhiteSpace(email))
+            if (email is not null && string.IsNullOrWhiteSpace(email))
             {
                 throw new ArgumentException(
-                    "Email cannot contain only whitespace.",
+                    "Email cannot be empty or whitespace.",
                     nameof(email));
             }
 
