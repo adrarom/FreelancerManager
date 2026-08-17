@@ -52,5 +52,59 @@ namespace FreelancerManager.UnitTests.Domain.Invoices
 
             Assert.Equal(0m, invoice.Subtotal);
         }
+
+        [Fact]
+        public void NewInvoice_HasDraftStatus()
+        {
+
+            var invoice = new Invoice();
+            Assert.Equal(InvoiceStatus.Draft, invoice.Status);
+        }
+        [Fact]
+        public void Issue_WithLines_ChangesStatusToIssued()
+        {
+            var invoice = new Invoice();
+            var line = new InvoiceLine(
+                "Backend development",
+                10m,
+                50m
+                );
+
+            invoice.AddLine(line);
+
+            invoice.Issue();
+
+            Assert.Equal(InvoiceStatus.Issued, invoice.Status);
+        }
+        [Fact]
+        public void Issue_WithoutLines_ThrowsInvalidOperationException()
+        {
+            var invoice = new Invoice();
+            
+            Assert.Throws<InvalidOperationException>(() => invoice.Issue());
+        }
+
+        [Fact]
+        public void Issue_WhenAlreadyIssued_ThrowsInvalidOperationException()
+        {
+            var invoice = new Invoice();
+            var invoiceLine = new InvoiceLine("Backend development", 10m, 50m);
+
+            invoice.AddLine(invoiceLine);
+            invoice.Issue();
+
+            Assert.Throws<InvalidOperationException>(() => invoice.Issue());
+        }
+        [Fact]
+        public void AddLine_WhenInvoiceIsIssued_ThrowsInvalidOperationException()
+        {
+            var invoice = new Invoice();
+            var invoiceLine = new InvoiceLine("Backend development", 10m, 50m);
+
+            invoice.AddLine(invoiceLine);
+            invoice.Issue();
+
+            Assert.Throws<InvalidOperationException>(() => invoice.AddLine(invoiceLine));
+        }
     }
 }
