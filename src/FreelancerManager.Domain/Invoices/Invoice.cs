@@ -26,9 +26,10 @@
                 throw new InvalidOperationException("Invoice cannot be issued without lines.");
             }
 
-            if (Status == InvoiceStatus.Issued) 
+            if (Status != InvoiceStatus.Draft)
             {
-                throw new InvalidOperationException("Invoice status is already Issued");
+                throw new InvalidOperationException(
+                    "Only draft invoices can be issued.");
             }
             Status = InvoiceStatus.Issued;
         }
