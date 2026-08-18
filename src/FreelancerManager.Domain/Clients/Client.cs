@@ -2,6 +2,9 @@
 {
     public class Client
     {
+        public const int MaxNameLength = 200;
+        public const int MaxTaxIdLength = 30;
+        public const int MaxEmailLength = 320;
         public Guid Id { get; private set; }
         public string Name { get; }
         public string TaxId { get; }
@@ -29,6 +32,22 @@
                     "Email cannot be empty or whitespace.",
                     nameof(email));
             }
+
+            if (name.Length > MaxNameLength)
+                throw new ArgumentException(
+                    $"Name cannot exceed {MaxNameLength} characters.",
+                    nameof(name));
+
+            if (taxId.Length > MaxTaxIdLength)
+                throw new ArgumentException(
+                    $"TaxId cannot exceed {MaxTaxIdLength} characters.",
+                    nameof(taxId));
+
+            if (email is not null && email.Length > MaxEmailLength)
+                throw new ArgumentException(
+                    $"Email cannot exceed {MaxEmailLength} characters.",
+                    nameof(email));
+
 
             Name = name;
             TaxId = taxId;

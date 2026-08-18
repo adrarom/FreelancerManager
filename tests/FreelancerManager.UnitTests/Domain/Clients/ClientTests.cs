@@ -98,5 +98,25 @@ namespace FreelancerManager.UnitTests.Domain.Clients
             Assert.NotEqual(Guid.Empty, client.Id);
         }
 
+        [Fact]
+
+        public void Constructor_NameExceedsLength_ThrowsArgumentException()
+        {
+            var name = new string('A', Client.MaxNameLength + 1);
+
+            Assert.Throws<ArgumentException>(() =>
+                new Client(name, "B12345678", "contact@acme.com"));
+        }
+
+        [Fact]
+        public void Constructor_NameAtMaxLength_CreatesClient()
+        {
+            var name = new string('A', Client.MaxNameLength);
+
+            var client = new Client(name, "B12345678", null);
+
+            Assert.Equal(name, client.Name);
+        }
+
     }
 }
