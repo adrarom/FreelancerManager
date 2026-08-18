@@ -2,6 +2,7 @@
 {
     public class Client
     {
+        public Guid Id { get; private set; }
         public string Name { get; }
         public string TaxId { get; }
         public string? Email { get; }
@@ -32,6 +33,7 @@
             Name = name;
             TaxId = taxId;
             Email = email;
+            Id = Guid.NewGuid();
         }
     }
 }

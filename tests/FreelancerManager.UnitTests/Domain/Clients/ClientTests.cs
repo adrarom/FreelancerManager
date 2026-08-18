@@ -87,6 +87,16 @@ namespace FreelancerManager.UnitTests.Domain.Clients
             Assert.Throws<ArgumentException>(() =>
                 new Client("Acme Ltd", "B12345678", ""));
         }
+        [Fact]
+        public void Constructor_WithValidData_AssignId()
+        {
+            var client = new Client(
+                "Acme Ltd",
+                "B12345678",
+                "contact@acme.com");
+
+            Assert.NotEqual(Guid.Empty, client.Id);
+        }
 
     }
 }
