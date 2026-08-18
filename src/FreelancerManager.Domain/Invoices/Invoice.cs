@@ -4,6 +4,7 @@ namespace FreelancerManager.Domain.Invoices
 {
     public class Invoice
     {
+        public Guid Id { get; private set; }
         private readonly List<InvoiceLine> _lines = [];
 
         public Client Client { get; }
@@ -18,6 +19,7 @@ namespace FreelancerManager.Domain.Invoices
         {
             if(client is null) throw new ArgumentNullException(nameof(client));
             Client = client;
+            Id = Guid.NewGuid();
         }
         public void AddLine(InvoiceLine line)
         {
@@ -43,5 +45,7 @@ namespace FreelancerManager.Domain.Invoices
             }
             Status = InvoiceStatus.Issued;
         }
+
+        
     }
 }

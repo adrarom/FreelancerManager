@@ -136,6 +136,13 @@ namespace FreelancerManager.UnitTests.Domain.Invoices
                 new Invoice(null!));
         }
 
+        [Fact]
+        public void Constructor_WithValidClient_AssignsId()
+        {
+            var invoice = new Invoice(CreateClient());
+
+            Assert.NotEqual(Guid.Empty, invoice.Id);
+        }
 
     }
 }
