@@ -2,6 +2,7 @@
 {
     public class InvoiceLine
     {
+        public const int MaxDescriptionLength = 500;
         public string Description { get; }
         public decimal Quantity { get; }
 
@@ -23,6 +24,12 @@
             {
                 throw new ArgumentOutOfRangeException(nameof(unitPrice),"Unit Price cannot be negative");
             }
+            if (description.Length > MaxDescriptionLength)
+                throw new ArgumentException(
+                    $"Description cannot exceed {MaxDescriptionLength} characters.",
+                    nameof(description));
+
+
             Description = description;
             Quantity = quantity;
             UnitPrice = unitPrice;

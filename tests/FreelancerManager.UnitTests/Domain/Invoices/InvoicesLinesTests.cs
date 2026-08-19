@@ -91,4 +91,23 @@ public class InvoiceLineTests
         Assert.Throws<ArgumentException>(() =>
             new InvoiceLine("   ", 10m, 50m));
     }
+
+    [Fact]
+    public void Constructor_DescriptionAtMaxLength_CreatesInvoiceLine()
+    {
+        var description = new string('A', InvoiceLine.MaxDescriptionLength);
+
+        var invoiceLine = new InvoiceLine(description, 10m, 50m);
+
+        Assert.Equal(description, invoiceLine.Description);
+    }
+
+    [Fact]
+    public void Constructor_DescriptionExceedsMaxLength_ThrowsArgumentException()
+    {
+        var description = new string('A', InvoiceLine.MaxDescriptionLength + 1);
+
+        Assert.Throws<ArgumentException>(() =>
+            new InvoiceLine(description, 10m, 50m));
+    }
 }

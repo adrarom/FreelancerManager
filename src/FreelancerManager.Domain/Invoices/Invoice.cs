@@ -7,7 +7,7 @@ namespace FreelancerManager.Domain.Invoices
         public Guid Id { get; private set; }
         private readonly List<InvoiceLine> _lines = [];
 
-        public Client Client { get; }
+        public Client Client { get; private set; }
 
         public IReadOnlyCollection<InvoiceLine> Lines => _lines.AsReadOnly();
 
@@ -15,6 +15,10 @@ namespace FreelancerManager.Domain.Invoices
 
         public InvoiceStatus Status { get; private set; } = InvoiceStatus.Draft;
 
+        private Invoice()
+        {
+            Client = null!;
+        }
         public Invoice(Client client)
         {
             if(client is null) throw new ArgumentNullException(nameof(client));
