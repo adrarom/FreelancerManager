@@ -14,7 +14,8 @@ namespace FreelancerManager.Infrastructure.Persistence.Configurations
             builder.HasOne(x => x.Client)
                 .WithMany()
                 .HasForeignKey("ClientId")
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
             builder.OwnsMany(x => x.Lines, line =>
             {
                 line.ToTable("InvoiceLines");
